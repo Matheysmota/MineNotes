@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!--  my app colors  -->
+    <color name="black">#FF000000</color>
+    <color name="half_black">#99000000</color>
+    <color name="appbar_color">#FFFFFFFF</color>
+    <color name="background_color">#F2F2F2</color>
+    <color name="on_appbar_color">#5C5C5C</color>
+
+</resources>

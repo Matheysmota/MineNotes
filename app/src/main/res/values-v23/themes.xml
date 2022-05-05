@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.MineNotes.Base" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/background_color</item>
+        <!-- Status bar color. -->
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="colorPrimaryDark">@color/on_appbar_color</item>
+        <item name="android:statusBarColor">@color/background_color</item>
+
+        <!-- Used to change MenuItem textColor -->
+        <item name="actionMenuTextColor">@color/on_appbar_color</item>
+    </style>
+</resources>
