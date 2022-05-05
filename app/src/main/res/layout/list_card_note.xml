@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/listItemNote_root"
+    android:layout_width="match_parent"
+    android:layout_height="144dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="6dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginBottom="6dp"
+    android:theme="@style/CustomCardCorners"
+    android:backgroundTint="@color/card_purpple_color"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/listItemNote_noteTittle"
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            tools:text="#1" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/listItemNote_noteDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_weight="1"
+            android:maxLines="2"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            tools:text="teste" />
+    </LinearLayout>
+
+
+
+</com.google.android.material.card.MaterialCardView>

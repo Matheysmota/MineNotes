@@ -12,13 +12,13 @@
         android:theme="@style/Theme.MineNotes.Base"
         tools:targetApi="31">
         <activity
-            android:name=".feature.NewNoteActivity"
+            android:name=".feature.newNote.NewNoteActivity"
             android:exported="false" />
         <activity
-            android:name=".feature.EditNoteActivity"
+            android:name=".feature.editNote.EditNoteActivity"
             android:exported="false" />
         <activity
-            android:name=".feature.HomeNoteActivity"
+            android:name=".feature.home.HomeNoteActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

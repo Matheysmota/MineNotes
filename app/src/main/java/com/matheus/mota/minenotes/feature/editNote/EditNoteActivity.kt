@@ -1,4 +1,4 @@
-package com.matheus.mota.minenotes.feature
+package com.matheus.mota.minenotes.feature.editNote
 
 import android.os.Bundle
 import com.matheus.mota.minenotes.common.BaseAppCompatActivity
