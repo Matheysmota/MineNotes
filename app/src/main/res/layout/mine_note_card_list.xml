@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/listItemNote_root"
+    android:id="@+id/mineNote_root"
     android:layout_width="match_parent"
-    android:layout_height="144dp"
+    android:layout_height="wrap_content"
     android:layout_marginStart="16dp"
     android:layout_marginTop="6dp"
     android:layout_marginEnd="16dp"
@@ -27,27 +26,21 @@
         android:paddingEnd="16dp">
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/listItemNote_noteTittle"
+            android:id="@+id/mineNote_tittle"
             android:layout_width="64dp"
             android:layout_height="wrap_content"
-            android:maxLines="2"
             android:textColor="@color/black"
             android:textSize="22sp"
             android:textStyle="bold"
             tools:text="#1" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/listItemNote_noteDescription"
+            android:id="@+id/mineNote_description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:layout_weight="1"
-            android:maxLines="2"
             android:textColor="@color/black"
-            android:textSize="20sp"
-            tools:text="teste" />
+            android:textSize="20sp" />
     </LinearLayout>
-
-
-
 </com.google.android.material.card.MaterialCardView>

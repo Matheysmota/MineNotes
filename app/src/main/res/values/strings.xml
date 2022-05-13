@@ -4,4 +4,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="no_notes">No notes created yet</string>
     <string name="create_instruction">Create your first note using the add button</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris auctor eget mi at convallis. Maecenas vel vulputate felis. Phasellus euismod elit sed lacus commodo, sed posuere dolor ultricies. Maecen...</string>
 </resources>

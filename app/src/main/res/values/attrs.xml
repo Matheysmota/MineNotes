@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MineNoteCustomView">
+        <attr name="note_tittle" format="string" />
+        <attr name="note_description" format="string" />
+        <attr name="note_color" format="color" />
+    </declare-styleable>
+</resources>

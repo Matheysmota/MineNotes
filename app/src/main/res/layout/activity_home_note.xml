@@ -11,7 +11,7 @@
      <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="0dp"
-        android:layout_height="88dp"
+        android:layout_height="wrap_content"
         android:background="@color/background_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,7 +20,8 @@
         app:titleTextColor="@color/on_appbar_color" />
 
     <TextView
-        android:id="@+id/textView"
+        android:visibility="invisible"
+        android:id="@+id/homeNote_noNotesTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_bold"
@@ -33,6 +34,8 @@
         app:layout_constraintTop_toTopOf="@+id/toolbar" />
 
     <TextView
+        android:visibility="invisible"
+        android:id="@+id/homeNote_noteInstructionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -42,15 +45,15 @@
         android:textColor="@color/half_black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/homeNote_noNotesTextView" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:visibility="visible"
+        android:id="@+id/homeNote_notesList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="24dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/list_card_note"
+        tools:listitem="@layout/mine_note_card_list"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />

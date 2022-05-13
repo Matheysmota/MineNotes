@@ -14,5 +14,6 @@
     <color name="card_pastel_red_color">#FFDADA</color>
     <color name="card_pastel_yellow_color">#EBFFB2</color>
     <color name="card_purpple_color">#AB9DFF</color>
+    <color name="button_red_color">#FF0000</color>
 
 </resources>
