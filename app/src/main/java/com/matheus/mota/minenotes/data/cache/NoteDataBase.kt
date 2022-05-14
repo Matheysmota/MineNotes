@@ -16,16 +16,15 @@ abstract class NoteDataBase() : RoomDatabase() {
         @Volatile
         private var INSTANCE: NoteDataBase? = null
 
-        fun getDataClient(context: Context): NoteDataBase {
+        fun getDataBase(context: Context): NoteDataBase {
             if (INSTANCE != null) return INSTANCE!!
 
             synchronized(this) {
-
                 INSTANCE = Room
-                    .databaseBuilder(context, NoteDataBase::class.java, "LOGIN_DATABASE")
-                    .fallbackToDestructiveMigration()
+                    .databaseBuilder(context.applicationContext,
+                        NoteDataBase::class.java,
+                        "LOGIN_DATABASE")
                     .build()
-
                 return INSTANCE!!
             }
         }

@@ -1,5 +1,6 @@
 package com.matheus.mota.minenotes.feature.home
 
+import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -12,6 +13,7 @@ import com.matheus.mota.minenotes.R
 import com.matheus.mota.minenotes.common.BaseAppCompatActivity
 import com.matheus.mota.minenotes.common.extentions.invisible
 import com.matheus.mota.minenotes.common.extentions.visible
+import com.matheus.mota.minenotes.data.cache.dao.NoteDao
 import com.matheus.mota.minenotes.data.entity.Note
 import com.matheus.mota.minenotes.databinding.ActivityHomeNoteBinding
 import com.matheus.mota.minenotes.feature.editNote.EditNoteActivity
@@ -20,6 +22,7 @@ import com.matheus.mota.minenotes.feature.home.adapter.HomeNoteListener
 import com.matheus.mota.minenotes.feature.newNote.NewNoteActivity
 import com.matheus.mota.minenotes.viewModel.homeNote.HomeNoteViewModel
 import com.matheus.mota.minenotes.viewModel.homeNote.HomeNoteViewModelFactory
+import com.matheus.mota.minenotes.viewModel.homeNote.repository.HomeNoteRepository
 
 class HomeNoteActivity : BaseAppCompatActivity(), HomeNoteListener {
 
@@ -31,8 +34,7 @@ class HomeNoteActivity : BaseAppCompatActivity(), HomeNoteListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mineNotesBinding.root)
-        viewModel = ViewModelProvider(this, HomeNoteViewModelFactory())[HomeNoteViewModel::class.java]
-
+        viewModel = ViewModelProvider(this, HomeNoteViewModelFactory(HomeNoteRepository()))[HomeNoteViewModel::class.java]
     }
 
     override fun setupScreen() {
@@ -69,10 +71,9 @@ class HomeNoteActivity : BaseAppCompatActivity(), HomeNoteListener {
 
     private fun setObservers(){
 
-        viewModel.loadNotes(this).observe(this){ notesList ->
-            val teste = mutableListOf<Note>(Note(noteTittle = "Tittle 1", noteDescription = "Description 1", noteColor = R.color.card_pastel_red_color, id = 0), Note(noteTittle = "Tittle 2", noteDescription = "Description 2", noteColor = R.color.card_light_blue_color, id = 0))
+        viewModel.notelist.observe(this){ notesList ->
             mineNotesBinding.homeNoteNotesList.adapter = noteListAdapter
-            noteListAdapter.populateAdapter(teste)
+            noteListAdapter.populateAdapter(notesList)
         }
     }
 

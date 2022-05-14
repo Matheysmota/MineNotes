@@ -1,20 +1,22 @@
 package com.matheus.mota.minenotes.viewModel.homeNote.repository
 
 import android.content.Context
+import androidx.lifecycle.LiveData
 import com.matheus.mota.minenotes.data.cache.NoteDataBase
+import com.matheus.mota.minenotes.data.cache.dao.NoteDao
 import com.matheus.mota.minenotes.data.entity.Note
 
 class HomeNoteRepository() : IHomeNoteRepository {
 
-    private fun initDataBase(context: Context): NoteDataBase {
-        return NoteDataBase.getDataClient(context)
+    fun initDataBase(context: Context): NoteDataBase {
+        return NoteDataBase.getDataBase(context)
     }
 
 
     // in this fuction we get note informations
-    override suspend fun getNoteList(context: Context): MutableList<Note> {
-        val noteListDataBase = initDataBase(context)
-        return noteListDataBase.noteDao().getAllNotes()
+    override suspend fun getNoteList(): LiveData<MutableList<Note>> {
+        val noteDao: NoteDao
+        return noteDao.getAllNotes()
     }
 
 }
