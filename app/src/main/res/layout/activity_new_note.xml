@@ -40,7 +40,7 @@
                 android:id="@+id/editNote_cardTittle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="aaaaa"
+                android:text="Tittle"
                 android:textColor="@color/half_black"
                 android:textSize="14sp"
                 android:textStyle="bold"

@@ -6,15 +6,12 @@ import com.matheus.mota.minenotes.data.cache.NoteDataBase
 
 class NewNoteRepository(): INewNoteRepository {
 
-    val databaseBuilder = Room.databaseBuilder(
-    this as Context,
-    NoteDataBase::class.java,
-    "mineNotes.db"
-    ).build()
-    private val noteDao = databaseBuilder.noteDao()
+    fun initDataBase(context: Context): NoteDataBase {
+        return NoteDataBase.getDataBase(context)
+    }
 
     // in this fuction we get note informations
-    override suspend fun saveNote() {
-        noteDao.saveNote()
+    override suspend fun saveNote(context: Context) {
+        initDataBase(context).noteDao().saveNote()
     }
 }

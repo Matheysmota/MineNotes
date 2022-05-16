@@ -24,7 +24,9 @@ abstract class NoteDataBase() : RoomDatabase() {
                     .databaseBuilder(context.applicationContext,
                         NoteDataBase::class.java,
                         "LOGIN_DATABASE")
+                    .allowMainThreadQueries()
                     .build()
+
                 return INSTANCE!!
             }
         }

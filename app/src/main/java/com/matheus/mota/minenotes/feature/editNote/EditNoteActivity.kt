@@ -9,13 +9,11 @@ import com.matheus.mota.minenotes.databinding.ActivityEditNoteBinding
 class EditNoteActivity : BaseAppCompatActivity() {
 
     private val editNoteBinding by lazy { ActivityEditNoteBinding.inflate(layoutInflater) }
-
     companion object {
         fun getIntent(context: Context): Intent {
             return Intent(context, EditNoteActivity::class.java)
         }
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(editNoteBinding.root)

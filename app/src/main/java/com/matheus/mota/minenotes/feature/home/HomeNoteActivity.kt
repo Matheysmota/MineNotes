@@ -35,12 +35,14 @@ class HomeNoteActivity : BaseAppCompatActivity(), HomeNoteListener {
         super.onCreate(savedInstanceState)
         setContentView(mineNotesBinding.root)
         viewModel = ViewModelProvider(this, HomeNoteViewModelFactory(HomeNoteRepository()))[HomeNoteViewModel::class.java]
+        viewModel.loadNotes()
     }
 
     override fun setupScreen() {
         super.setupScreen()
         setSupportActionBar(mineNotesBinding.toolbar)
-        setObservers()
+//        setObservers()
+        recyclerValidation(null)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -65,13 +67,11 @@ class HomeNoteActivity : BaseAppCompatActivity(), HomeNoteListener {
             mineNotesBinding.homeNoteNoNotesTextView.invisible()
             mineNotesBinding.homeNoteNoteInstructionTextView.invisible()
             /* in this function i set my recycler view */
-            setObservers()
         }
     }
 
     private fun setObservers(){
-
-        viewModel.notelist.observe(this){ notesList ->
+        viewModel.noteList.observe(this){ notesList ->
             mineNotesBinding.homeNoteNotesList.adapter = noteListAdapter
             noteListAdapter.populateAdapter(notesList)
         }

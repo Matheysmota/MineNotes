@@ -9,10 +9,9 @@ import kotlin.coroutines.coroutineContext
 class HomeNoteViewModelFactory(private val repository: HomeNoteRepository) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return if (modelClass.isAssignableFrom(HomeNoteViewModel::class.java)) {
-            HomeNoteViewModel(repository) as T
-        } else {
-            throw IllegalArgumentException("ViewModel Not Found")
+        if (modelClass.isAssignableFrom(HomeNoteViewModel::class.java)) {
+            return HomeNoteViewModel(repository) as T
         }
+        throw IllegalArgumentException("ViewModel Not Found")
     }
 }

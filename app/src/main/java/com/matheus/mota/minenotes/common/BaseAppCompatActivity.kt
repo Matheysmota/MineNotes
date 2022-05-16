@@ -22,6 +22,9 @@ open class BaseAppCompatActivity :  AppCompatActivity() {
     protected open fun setupListeners() {}
 
     override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {
+        if (menuItem.itemId == android.R.id.home) {
+            onBackPressed()
+        }
         return super.onOptionsItemSelected(menuItem)
     }
 
