@@ -8,10 +8,10 @@ import com.matheus.mota.minenotes.data.entity.Note
 interface NoteDao {
 
     @Query("SELECT * FROM Note")
-    fun getAllNotes(): LiveData<MutableList<Note>>
+    fun getAllNotes(): List<Note>
 
-    @Insert
-    suspend fun saveNote(vararg note: Note)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun addNote(vararg note: Note)
 
     @Update
     suspend fun updateNote(note: Note)

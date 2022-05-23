@@ -1,20 +1,29 @@
 package com.matheus.mota.minenotes.feature.home.adapter
 
 import android.annotation.SuppressLint
+import android.app.Application
+import android.content.Context
+import android.content.res.ColorStateList
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.view.ViewGroup
+import androidx.appcompat.content.res.AppCompatResources.getColorStateList
 import androidx.core.view.get
 import androidx.recyclerview.widget.RecyclerView
 import com.matheus.mota.minenotes.R
 import com.matheus.mota.minenotes.common.extentions.inflate
+import com.matheus.mota.minenotes.common.extentions.setColor
 import com.matheus.mota.minenotes.data.entity.Note
 import com.matheus.mota.minenotes.feature.home.HomeNoteActivity
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.withContext
 
 class HomeNoteListAdapter(private val noteListListeners: HomeNoteActivity):
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var noteAdapterList: MutableList<Note> = mutableListOf()
 
     override fun getItemCount(): Int {
-        return  noteAdapterList.size
+        return  noteAdapterList.count()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -26,20 +35,21 @@ class HomeNoteListAdapter(private val noteListListeners: HomeNoteActivity):
         val itemViewHolder = holder as HomeNoteListViewHolder
         val entity = noteAdapterList[position]
 
-        bindItemViewHolder(itemViewHolder, entity, position)
+        bindItemViewHolder(itemViewHolder, entity)
     }
     @SuppressLint("SetTextI18n")
     private fun bindItemViewHolder(
         viewHolder: HomeNoteListViewHolder,
-        item: Note,
-        position: Int
+        item: Note
     ) {
-        viewHolder.noteTittle.text = "#${item.noteTittle}"
-        viewHolder.noteDescription.text = "(${item.noteDescription})"
-        viewHolder.root.setCardBackgroundColor(item.noteColor)
+        viewHolder.noteTittle.text = item.noteTittle
+        viewHolder.noteDescription.text = item.noteDescription
 
+        //meu card está tendo um comportamento inesperado.
+//        viewHolder.root.backgroundTintList = noteListListeners.getColor()
+        viewHolder.root.setBackgroundColor(item.noteColor)
         //listeners
-        viewHolder.root[position].setOnClickListener {
+        viewHolder.root.setOnClickListener {
             noteListListeners.onItemClicked(item)
         }
     }
@@ -49,5 +59,4 @@ class HomeNoteListAdapter(private val noteListListeners: HomeNoteActivity):
         noteAdapterList = itemsList
         notifyItemRangeInserted(0, itemsList.size)
     }
-
 }

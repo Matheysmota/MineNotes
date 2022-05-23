@@ -7,7 +7,6 @@
     tools:context=".feature.home.HomeNoteActivity"
     android:background="@color/background_color"
     >
-
      <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="0dp"
@@ -20,7 +19,7 @@
         app:titleTextColor="@color/on_appbar_color" />
 
     <TextView
-        android:visibility="invisible"
+        android:visibility="visible"
         android:id="@+id/homeNote_noNotesTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,7 +33,7 @@
         app:layout_constraintTop_toTopOf="@+id/toolbar" />
 
     <TextView
-        android:visibility="invisible"
+        android:visibility="visible"
         android:id="@+id/homeNote_noteInstructionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -51,7 +50,7 @@
         android:id="@+id/homeNote_notesList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/mine_note_card_list"
         app:layout_constraintEnd_toEndOf="parent"

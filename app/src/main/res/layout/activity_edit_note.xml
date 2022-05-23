@@ -24,7 +24,9 @@
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
             app:title="Edit Note" />
+
     </com.google.android.material.appbar.AppBarLayout>
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/editNote_cardRoot"
         android:layout_width="match_parent"
@@ -32,7 +34,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
-        android:backgroundTint="@color/card_purpple_color"
+        android:backgroundTint="@color/card_purple_color"
         android:clickable="true"
         android:focusable="true"
         android:theme="@style/CustomCardCorners"
@@ -48,12 +50,12 @@
                 android:id="@+id/editNote_cardTittle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                tools:text="note_tittle"
                 android:textColor="@color/half_black"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="note_tittle" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/editNote_cardDescription"
@@ -61,77 +63,82 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="12dp"
-                tools:text="@string/lorem_ipsum"
                 android:textColor="@color/half_black"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/editNote_cardTittle" />
+                app:layout_constraintTop_toBottomOf="@id/editNote_cardTittle"
+                tools:text="@string/lorem_ipsum" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/editNote_tittle"
-        android:text="Tittle"
-        android:layout_marginTop="24dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:textSize="12sp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:text="Tittle"
+        android:textSize="12sp"
         app:layout_constraintTop_toBottomOf="@+id/editNote_cardRoot" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/editNote_tittleInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:hint="Type the note tittle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editNote_tittle"
+        app:boxStrokeColor="@color/half_black"
         app:counterEnabled="true"
         app:counterMaxLength="20"
-        >
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editNote_tittle">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editNote_tittleEditText"
-            android:backgroundTint="@color/appbar_color"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/appbar_color" />
     </com.google.android.material.textfield.TextInputLayout>
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/editNote_description"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="12dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
         android:text="Description"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editNote_tittleInputLayout" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/editNote_descriptionInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editNote_description"
         android:hint="tesste"
+        app:boxStrokeColor="@color/half_black"
         app:counterEnabled="true"
         app:counterMaxLength="200"
-        >
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editNote_description">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editNote_descriptionEditText"
-            android:backgroundTint="@color/appbar_color"
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:layout_gravity="top"
+            android:backgroundTint="@color/appbar_color"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -145,6 +152,7 @@
         android:backgroundTintMode="screen"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editNote_descriptionInputLayout" />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/editNote_lightGreenButton"
         android:layout_width="32dp"
@@ -155,16 +163,18 @@
         android:backgroundTintMode="screen"
         app:layout_constraintStart_toEndOf="@id/editNote_lightBlueButton"
         app:layout_constraintTop_toBottomOf="@+id/editNote_descriptionInputLayout" />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/editNote_purpleButton"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/background_button"
-        android:backgroundTint="@color/card_purpple_color"
+        android:backgroundTint="@color/card_purple_color"
         android:backgroundTintMode="screen"
         app:layout_constraintStart_toEndOf="@id/editNote_lightGreenButton"
         app:layout_constraintTop_toBottomOf="@+id/editNote_descriptionInputLayout" />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/editNote_pastelRedButton"
         android:layout_width="32dp"
@@ -175,6 +185,7 @@
         android:backgroundTintMode="screen"
         app:layout_constraintStart_toEndOf="@id/editNote_purpleButton"
         app:layout_constraintTop_toBottomOf="@+id/editNote_descriptionInputLayout" />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/editNote_pastelYellowButton"
         android:layout_width="32dp"
@@ -184,16 +195,18 @@
         android:backgroundTint="@color/card_pastel_yellow_color"
         android:backgroundTintMode="screen"
         app:layout_constraintStart_toEndOf="@id/editNote_pastelRedButton"
-        app:layout_constraintTop_toBottomOf="@+id/editNote_descriptionInputLayout"/>
+        app:layout_constraintTop_toBottomOf="@+id/editNote_descriptionInputLayout" />
+
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/editNote_deleteButton"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:text="Delete Note"
-        android:textSize="12sp"
-        android:textColor="@color/button_red_color"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="16dp"
+        android:text="Delete Note"
+        android:textColor="@color/button_red_color"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editNote_pastelYellowButton" />
 

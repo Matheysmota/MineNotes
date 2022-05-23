@@ -1,46 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mineNote_root"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="16dp"
-    android:layout_marginTop="6dp"
-    android:layout_marginEnd="16dp"
-    android:layout_marginBottom="6dp"
-    android:theme="@style/CustomCardCorners"
-    android:backgroundTint="@color/card_purpple_color"
-    android:clickable="true"
-    android:focusable="true"
-    app:cardElevation="4dp">
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/mineNote_root"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_marginStart="16dp"
+android:layout_marginTop="16dp"
+android:layout_marginEnd="16dp"
+android:clickable="true"
+android:focusable="true"
+android:theme="@style/CustomCardCorners"
+app:cardElevation="4dp"
+app:layout_constraintTop_toBottomOf="@+id/newNote_Toolbar"
+>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:animateLayoutChanges="true"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/mineNote_tittle"
-            android:layout_width="64dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            tools:text="#1" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/mineNote_tittle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:text="Tittle"
+        android:textColor="@color/half_black"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/mineNote_description"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:layout_weight="1"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-    </LinearLayout>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/mineNote_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="12dp"
+        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris auctor eget mi at convallis. Maecenas vel vulputate felis. Phasellus euismod elit sed lacus commodo, sed posuere dolor ultricies. Maecen..."
+        android:textColor="@color/half_black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mineNote_tittle" />
+</androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
