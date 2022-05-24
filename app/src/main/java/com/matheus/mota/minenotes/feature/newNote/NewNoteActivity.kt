@@ -1,6 +1,5 @@
 package com.matheus.mota.minenotes.feature.newNote
 
-import android.content.ClipData
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -9,9 +8,6 @@ import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Button
-import android.widget.Toast
-import androidx.appcompat.view.menu.MenuItemImpl
 import androidx.lifecycle.ViewModelProvider
 import com.matheus.mota.minenotes.R
 import com.matheus.mota.minenotes.common.base.BaseAppCompatActivity
@@ -131,7 +127,7 @@ class NewNoteActivity : BaseAppCompatActivity() {
                 override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
                 }
                 override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                        newNoteCardTittle.setText(s)
+                    newNoteCardTittle.text = s
                 }
             })
             newNoteDescriptionEditText.addTextChangedListener(object : TextWatcher {
@@ -142,7 +138,7 @@ class NewNoteActivity : BaseAppCompatActivity() {
                 }
                 override fun onTextChanged(s: CharSequence, start: Int,
                                            before: Int, count: Int) {
-                    newNoteCardDescription.setText(s)
+                    newNoteCardDescription.text = s
                 }
             })
         }

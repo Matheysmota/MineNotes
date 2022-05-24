@@ -1,11 +1,9 @@
 package com.matheus.mota.minenotes.feature.home
 
 import android.annotation.SuppressLint
-import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.matheus.mota.minenotes.R

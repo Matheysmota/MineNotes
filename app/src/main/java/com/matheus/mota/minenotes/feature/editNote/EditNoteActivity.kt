@@ -5,12 +5,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.Button
-import android.widget.LinearLayout
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.matheus.mota.minenotes.R
@@ -152,7 +149,7 @@ class EditNoteActivity : BaseAppCompatActivity() {
             }
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                editNoteBinding.editNoteCardTittle.setText(s)
+                editNoteBinding.editNoteCardTittle.text = s
             }
         })
         editNoteBinding.editNoteDescriptionEditText.addTextChangedListener(object : TextWatcher {
@@ -167,7 +164,7 @@ class EditNoteActivity : BaseAppCompatActivity() {
                 s: CharSequence, start: Int,
                 before: Int, count: Int
             ) {
-                editNoteBinding.editNoteCardDescription.setText(s)
+                editNoteBinding.editNoteCardDescription.text = s
             }
         })
     }
