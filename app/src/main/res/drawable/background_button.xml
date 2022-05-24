@@ -9,6 +9,7 @@
     </item>
     <item android:state_enabled="true" android:state_focused="false">
         <shape android:shape="rectangle">
+
             <size android:width="293dp" android:height="44dp"/>
             <stroke android:color="@color/appbar_color" android:width="2dp"/>
             <corners android:radius="8dp"/>

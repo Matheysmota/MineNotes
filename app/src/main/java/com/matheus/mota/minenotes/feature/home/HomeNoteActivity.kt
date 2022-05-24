@@ -9,7 +9,7 @@ import android.view.MenuItem
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.matheus.mota.minenotes.R
-import com.matheus.mota.minenotes.common.extentions.base.BaseAppCompatActivity
+import com.matheus.mota.minenotes.common.base.BaseAppCompatActivity
 import com.matheus.mota.minenotes.common.extentions.invisible
 import com.matheus.mota.minenotes.common.extentions.visible
 import com.matheus.mota.minenotes.data.entity.Note
@@ -23,8 +23,6 @@ import com.matheus.mota.minenotes.viewModel.homeNote.HomeNoteViewModelFactory
 import com.matheus.mota.minenotes.viewModel.homeNote.repository.HomeNoteRepository
 
 class HomeNoteActivity : BaseAppCompatActivity(), HomeNoteListener {
-
-    private lateinit var color: ColorStateList
     private val mineNotesBinding by lazy { ActivityHomeNoteBinding.inflate(layoutInflater) }
     private val noteListAdapter by lazy { HomeNoteListAdapter(this) }
     private val viewModel by lazy {
@@ -34,18 +32,16 @@ class HomeNoteActivity : BaseAppCompatActivity(), HomeNoteListener {
         )[HomeNoteViewModel::class.java]
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mineNotesBinding.root)
         viewModel.loadNotes(this)
-
     }
+
     override fun onStart() {
         super.onStart()
         viewModel.loadNotes(this)
     }
-
     override fun setupScreen() {
         super.setupScreen()
         setObservers()
@@ -66,14 +62,6 @@ class HomeNoteActivity : BaseAppCompatActivity(), HomeNoteListener {
         startActivity(EditNoteActivity.getIntent(this, note))
     }
 
-    override fun getColor(): ColorStateList {
-        viewModel.noteList.observe(this){
-            it.forEach {
-                color = getColorStateList(it.noteColor)
-            }
-        }
-        return color
-    }
     private fun setObservers() {
         viewModel.noteList.observe(this) { notesList ->
             recyclerValidation(notesList)
@@ -93,9 +81,10 @@ class HomeNoteActivity : BaseAppCompatActivity(), HomeNoteListener {
             noteListAdapter.populateAdapter(list as MutableList<Note>)
         }
     }
+
     @SuppressLint("UseCompatLoadingForDrawables")
     private fun setToolbar(list: List<Note>?) {
-        if (list == null) {
+        if (list!!.isEmpty()) {
             setSupportActionBar(mineNotesBinding.toolbar)
         } else {
             setSupportActionBar(mineNotesBinding.toolbar)
@@ -103,7 +92,6 @@ class HomeNoteActivity : BaseAppCompatActivity(), HomeNoteListener {
             window.statusBarColor = ContextCompat.getColor(this, R.color.appbar_color)
         }
     }
-
     private fun mineNoteInstruction() = mineNotesBinding.homeNoteNoteInstructionTextView
     private fun mineNoteTittle() = mineNotesBinding.homeNoteNoNotesTextView
 }

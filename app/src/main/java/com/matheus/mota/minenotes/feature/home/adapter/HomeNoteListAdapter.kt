@@ -42,12 +42,11 @@ class HomeNoteListAdapter(private val noteListListeners: HomeNoteActivity):
         viewHolder: HomeNoteListViewHolder,
         item: Note
     ) {
+
+        viewHolder.root.setCardBackgroundColor(item.noteColor)
         viewHolder.noteTittle.text = item.noteTittle
         viewHolder.noteDescription.text = item.noteDescription
 
-        //meu card está tendo um comportamento inesperado.
-//        viewHolder.root.backgroundTintList = noteListListeners.getColor()
-        viewHolder.root.setBackgroundColor(item.noteColor)
         //listeners
         viewHolder.root.setOnClickListener {
             noteListListeners.onItemClicked(item)

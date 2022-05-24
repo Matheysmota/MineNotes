@@ -16,16 +16,24 @@ class NewNoteViewModel(private val repository: INewNoteRepository) : ViewModel()
     val note: LiveData<Note>
         get() = _note
 
+
+
     // get my data in my repositories
-    fun saveNotes(context: Context, myNote: Note){
+    fun saveNotes(context: Context, myNote: Note): Boolean{
+        var myResponse: Boolean = true
+        val condition = myNote.noteTittle.length in 1..20 && myNote.noteDescription.length in 1..200
+
         viewModelScope.launch {
-            if(myNote.noteTittle.length in 1..20 && myNote.noteDescription.length in 1..200){
+            myResponse = if(condition){
                 repository.saveNote(context, myNote)
+                true
             } else {
                 val error = "Impossível salvar está nota"
                 print(error)
+                false
             }
         }
+        return myResponse
     }
 
 //    fun getNotes(context: Context): MutableList<Note>{

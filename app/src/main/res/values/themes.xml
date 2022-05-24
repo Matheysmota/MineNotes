@@ -12,9 +12,10 @@
         <item name="actionMenuTextColor">@color/on_appbar_color</item>
     </style>
 
-    <!-- My First Screen theme. I used translucent appBar -->
-    <style name="Theme.MineNotes.FIRSTSCREEN" parent="Theme.MineNotes.Base">
-
+    <style name="BottomSheetDialogTheme" parent="Widget.Design.BottomSheet.Modal">
+        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
     </style>
-
+    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
 </resources>

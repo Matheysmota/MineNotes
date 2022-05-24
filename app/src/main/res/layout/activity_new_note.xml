@@ -80,8 +80,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
+        app:hintTextColor="@color/half_black"
         app:boxStrokeColor="@color/half_black"
-        android:hint="Type the note tittle"
+        android:hint="@string/new_note_tittle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/newNote_tittle"
@@ -112,6 +113,7 @@
         android:id="@+id/newNote_descriptionInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:hintTextColor="@color/half_black"
         android:layout_marginTop="8dp"
         android:layout_marginStart="16dp"
         app:boxStrokeColor="@color/half_black"
@@ -119,7 +121,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/newNote_description"
-        android:hint="tesste"
+        android:hint="@string/new_note_description"
         app:counterEnabled="true"
         app:counterMaxLength="200"
         >
@@ -148,9 +150,9 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginStart="8dp"
+        android:backgroundTintMode="screen"
         android:background="@drawable/background_button"
         android:backgroundTint="@color/card_light_green_color"
-        android:backgroundTintMode="screen"
         app:layout_constraintStart_toEndOf="@id/newNote_lightBlueButton"
         app:layout_constraintTop_toBottomOf="@+id/newNote_descriptionInputLayout" />
 

@@ -15,15 +15,20 @@ class EditNoteViewModel(private val repository: IEditNoteRepository): ViewModel(
     val note: LiveData<Note>
         get() = _note
 
-   fun editNote(context: Context, note: Note){
-       if(note.noteTittle.length in 1..20 && note.noteDescription.length in 1..200) {
-           viewModelScope.launch {
-               repository.editNote(context, note)
+   fun editNote(context: Context, myNote: Note): Boolean{
+       var myResponse: Boolean = true
+       val condition = myNote.noteTittle.length in 1..20 && myNote.noteDescription.length in 1..200
+       viewModelScope.launch {
+           myResponse = if(condition){
+               repository.editNote(context, myNote)
+               true
+           } else {
+               val error = "Impossível salvar está nota"
+               print(error)
+               false
            }
-       } else {
-           val error = "impossível editar nota"
-           print(error)
        }
+       return myResponse
     }
 
     fun deleteNote(context: Context, note: Note){

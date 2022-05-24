@@ -1,8 +1,20 @@
 <resources>
     <string name="app_name">Mine Notes</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--HomeNote Strings -->
     <string name="no_notes">No notes created yet</string>
     <string name="create_instruction">Create your first note using the add button</string>
+
+    <!-- Notes EditText & Card -->
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris auctor eget mi at convallis. Maecenas vel vulputate felis. Phasellus euismod elit sed lacus commodo, sed posuere dolor ultricies. Maecen...</string>
+    <string name="new_note_description">Type the note description</string>
+    <string name="new_note_tittle">Type the note title</string>
+
+    <!-- dialog Strings -->
+    <string name="dialog_tittle">Are you sure you want to delete this note?</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_delete">Delete</string>
+
+
+
 </resources>
