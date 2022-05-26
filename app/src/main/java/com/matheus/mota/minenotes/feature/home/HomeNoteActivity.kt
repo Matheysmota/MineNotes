@@ -1,6 +1,7 @@
 package com.matheus.mota.minenotes.feature.home
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -22,24 +23,26 @@ import com.matheus.mota.minenotes.viewModel.homeNote.repository.HomeNoteReposito
 
 class HomeNoteActivity : BaseAppCompatActivity(), HomeNoteListener {
     private val mineNotesBinding by lazy { ActivityHomeNoteBinding.inflate(layoutInflater) }
-    private val noteListAdapter by lazy { HomeNoteListAdapter(this) }
+    private val noteListAdapter by lazy { HomeNoteListAdapter(this, this) }
     private val viewModel by lazy {
         ViewModelProvider(
             this,
             HomeNoteViewModelFactory(HomeNoteRepository())
         )[HomeNoteViewModel::class.java]
     }
+    private var myList = listOf<Note>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mineNotesBinding.root)
         viewModel.loadNotes(this)
     }
-
     override fun onStart() {
         super.onStart()
         viewModel.loadNotes(this)
+        setInterface(myList)
     }
+
     override fun setupScreen() {
         super.setupScreen()
         setObservers()
@@ -60,36 +63,33 @@ class HomeNoteActivity : BaseAppCompatActivity(), HomeNoteListener {
         startActivity(EditNoteActivity.getIntent(this, note))
     }
 
-    private fun setObservers() {
+    private fun setObservers(): List<Note> {
         viewModel.noteList.observe(this) { notesList ->
-            recyclerValidation(notesList)
+            setInterface(notesList)
+            myList = notesList
         }
+        return myList
     }
-    private fun recyclerValidation(list: List<Note>?) {
-        setToolbar(list)
-        if (list == null) {
-            mineNoteTittle().visible()
+    private fun setInterface(list: List<Note>) {
+        if (list.isEmpty()) {
             mineNoteInstruction().visible()
+            setToolbar(this, R.color.background_color)
         } else {
-            mineNoteTittle().invisible()
-            mineNoteInstruction().invisible()
-
             /* in this function i set my recycler view */
             mineNotesBinding.homeNoteNotesList.adapter = noteListAdapter
             noteListAdapter.populateAdapter(list as MutableList<Note>)
+            /* set view state */
+            mineNoteInstruction().invisible()
+            setToolbar(this, R.color.appbar_color)
         }
     }
-
-    @SuppressLint("UseCompatLoadingForDrawables")
-    private fun setToolbar(list: List<Note>?) {
-        if (list!!.isEmpty()) {
+    private fun setToolbar(context: Context, int: Int){
+        mineNotesBinding.apply {
+            @SuppressLint("UseCompatLoadingForDrawables")
+            toolbar.background = getDrawable(int)
+            window.statusBarColor = ContextCompat.getColor(context, int)
             setSupportActionBar(mineNotesBinding.toolbar)
-        } else {
-            setSupportActionBar(mineNotesBinding.toolbar)
-            mineNotesBinding.toolbar.background = getDrawable(R.color.appbar_color)
-            window.statusBarColor = ContextCompat.getColor(this, R.color.appbar_color)
         }
     }
-    private fun mineNoteInstruction() = mineNotesBinding.homeNoteNoteInstructionTextView
-    private fun mineNoteTittle() = mineNotesBinding.homeNoteNoNotesTextView
+    private fun mineNoteInstruction() = mineNotesBinding.homeNoteNoNotesContainer
 }

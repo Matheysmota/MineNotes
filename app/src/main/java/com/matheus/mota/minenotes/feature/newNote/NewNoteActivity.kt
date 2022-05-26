@@ -1,13 +1,15 @@
 package com.matheus.mota.minenotes.feature.newNote
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
+import android.widget.Button
 import androidx.lifecycle.ViewModelProvider
 import com.matheus.mota.minenotes.R
 import com.matheus.mota.minenotes.common.base.BaseAppCompatActivity
@@ -21,8 +23,8 @@ import com.matheus.mota.minenotes.viewModel.newNote.NewNoteViewModel
 import com.matheus.mota.minenotes.viewModel.newNote.NewNoteViewModelFactory
 import com.matheus.mota.minenotes.viewModel.newNote.repository.NewNoteRepository
 
-class NewNoteActivity : BaseAppCompatActivity() {
 
+class NewNoteActivity : BaseAppCompatActivity() {
     /* my intent */
     companion object {
         fun getIntent(context: Context): Intent {
@@ -31,9 +33,9 @@ class NewNoteActivity : BaseAppCompatActivity() {
     }
 
     private val newNoteBinding by lazy { ActivityNewNoteBinding.inflate(layoutInflater) }
-    private val viewModel by lazy {  ViewModelProvider(this, NewNoteViewModelFactory(NewNoteRepository()))[NewNoteViewModel::class.java] }
-
-    private var color: Int = setColor(Color.PURPLE)
+    private val viewModel by lazy { ViewModelProvider(this, NewNoteViewModelFactory(NewNoteRepository()))[NewNoteViewModel::class.java] }
+    private var myMenu : Menu? = null
+    private var color: Int = setColor(Color.BLUE)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,8 +46,11 @@ class NewNoteActivity : BaseAppCompatActivity() {
         super.setupScreen()
         setSupportActionBar(newNoteBinding.newNoteToolbar)
         checkFieldsAndToggleButton()
+        initSelectedButton()
+        updateColor(color)
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        myMenu = menu
         menuInflater.inflate(R.menu.new_note_menu, menu)
         return true
     }
@@ -59,42 +64,19 @@ class NewNoteActivity : BaseAppCompatActivity() {
     }
     override fun setupListeners() {
         super.setupListeners()
-        setupNote()
+        setNoteColor()
+        updateTextNote()
     }
 
     private fun checkFieldsAndToggleButton() {
         val tittleEmpty = newNoteBinding.newNoteCardTittle.text.length in 1..20
         val descriptionEmpty = newNoteBinding.newNoteCardDescription.text.length in 1..200
 
-        val menuButton = findViewById<View>(R.id.newNoteMenu_save)
+        val menuButton = myMenu?.findItem(R.id.newNoteMenu_save)
         menuButton.toggleEnabled(tittleEmpty && descriptionEmpty)
+//        invalidateOptionsMenu()
     }
-    private fun setNoteColor(): Int {
-        newNoteBinding.run {
-            newNoteLightBlueButton.setOnClickListener {
-                color = setColor(Color.BLUE)
-                updateColor(color)
-            }
-            newNoteLightGreenButton.setOnClickListener {
-                color = setColor(Color.GREEN)
-                updateColor(color)
-            }
-            newNotePastelRedButton.setOnClickListener {
-                color = setColor(Color.RED)
-                updateColor(color)
-            }
-            newNotePastelYellowButton.setOnClickListener {
-                color = setColor(Color.YELLOW)
-                updateColor(color)
-            }
-            newNotePurpleButton.setOnClickListener {
-                color = setColor(Color.PURPLE)
-                updateColor(color)
-            }
-        }
-        return color
-    }
-    private fun saveNote(){
+    private fun saveNote() {
         val saveNotes = viewModel.saveNotes(
             this, Note(
                 noteTittle = newNoteBinding.newNoteCardTittle.text.toString(),
@@ -109,16 +91,60 @@ class NewNoteActivity : BaseAppCompatActivity() {
             setToast(this@NewNoteActivity, "Unable to save note!")
         }
     }
-    private fun setupNote() {
-        updateTextNote()
-        /* set change color in cardView */
-        setNoteColor()
+    private fun setNoteColor(): Int {
+        newNoteBinding.run {
+            newNoteLightBlueButton.setOnClickListener {
+                color = setColor(Color.BLUE)
+                updateColor(color)
+                updateButtonSelected()
+            }
+            newNoteLightGreenButton.setOnClickListener {
+                color = setColor(Color.GREEN)
+                updateColor(color)
+                updateButtonSelected()
+            }
+            newNotePastelRedButton.setOnClickListener {
+                color = setColor(Color.RED)
+                updateColor(color)
+                updateButtonSelected()
+            }
+            newNotePastelYellowButton.setOnClickListener {
+                color = setColor(Color.YELLOW)
+                updateColor(color)
+                updateButtonSelected()
+            }
+            newNotePurpleButton.setOnClickListener {
+                color = setColor(Color.PURPLE)
+                updateColor(color)
+                updateButtonSelected()
+            }
+        }
+        return color
     }
-    private fun updateColor(color: Int){
-        val colorStateList = getColorStateList(color)
-        newNoteBinding.newNoteCardRoot.backgroundTintList = colorStateList
+    private fun initSelectedButton(){
+        @SuppressLint("UseCompatLoadingForDrawables")
+        newNoteBinding.newNoteLightBlueButton.background = getDrawable(R.drawable.background_button_selected)
+        newNoteBinding.newNoteLightBlueButton.backgroundTintMode = PorterDuff.Mode.MULTIPLY
     }
-    private fun updateTextNote(){
+    @SuppressLint("UseCompatLoadingForDrawables")
+    private fun updateButtonSelected() {
+        val buttonList: Array<Button> = arrayOf(
+            newNoteBinding.newNotePurpleButton,
+            newNoteBinding.newNoteLightBlueButton,
+            newNoteBinding.newNoteLightGreenButton,
+            newNoteBinding.newNotePastelRedButton,
+            newNoteBinding.newNotePastelYellowButton)
+        for (button in buttonList) {
+            if(button.backgroundTintList == getColorStateList(color)) {
+                button.background = getDrawable(R.drawable.background_button_selected)
+                button.backgroundTintMode = PorterDuff.Mode.MULTIPLY
+            } else {
+                button.background = getDrawable(R.drawable.background_button_not_selected)
+                button.backgroundTintMode = PorterDuff.Mode.SCREEN
+            }
+        }
+    }
+    private fun updateTextNote() {
         newNoteBinding.run {
             newNoteTittleEditText.addTextChangedListener(object : TextWatcher {
 
@@ -143,6 +169,7 @@ class NewNoteActivity : BaseAppCompatActivity() {
             })
         }
     }
+    private fun updateColor(color: Int) {
+        newNoteBinding.newNoteCardRoot.backgroundTintList = getColorStateList(color)
+    }
 }
-
-

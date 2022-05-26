@@ -1,7 +1,9 @@
 package com.matheus.mota.minenotes.feature.editNote
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -40,7 +42,7 @@ class EditNoteActivity : BaseAppCompatActivity() {
         )[EditNoteViewModel::class.java]
     }
     lateinit var note: Note
-    private var color = setColor(Color.PURPLE)
+    private var color = setColor(Color.BLUE)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,11 +58,12 @@ class EditNoteActivity : BaseAppCompatActivity() {
         setSupportActionBar(editNoteBinding.editNoteToolbar)
         setupNote(note)
         updateTextNote()
+        updateSelectedButton(note.noteColor)
+
     }
     override fun setupListeners() {
         super.setupListeners()
         setNoteColor()
-
         editNoteBinding.editNoteDeleteButton.setOnClickListener {
             showDialog()
         }
@@ -91,6 +94,7 @@ class EditNoteActivity : BaseAppCompatActivity() {
         val bottomSheetDialog = BottomSheetDialog(this@EditNoteActivity)
         bottomSheetDialog.setContentView(R.layout.bottom_dialog_layout)
         bottomSheetDialog.show()
+
         bottomSheetDialog.findViewById<Button>(R.id.dialog_deleteButton)?.
         setOnClickListener {
             deleteNote()
@@ -118,28 +122,34 @@ class EditNoteActivity : BaseAppCompatActivity() {
         editNoteBinding.run {
             editNoteLightBlueButton.setOnClickListener {
                 color = setColor(Color.BLUE)
+
                 updateColor(color)
+                updateSelectedButton(color)
             }
             editNoteLightGreenButton.setOnClickListener {
                 color = setColor(Color.GREEN)
                 updateColor(color)
+                updateSelectedButton(color)
             }
             editNotePastelRedButton.setOnClickListener {
                 color = setColor(Color.RED)
                 updateColor(color)
+                updateSelectedButton(color)
             }
             editNotePastelYellowButton.setOnClickListener {
                 color = setColor(Color.YELLOW)
                 updateColor(color)
+                updateSelectedButton(color)
             }
             editNotePurpleButton.setOnClickListener {
                 color = setColor(Color.PURPLE)
                 updateColor(color)
+                updateSelectedButton(color)
             }
         }
         return color
     }
-    private fun updateColor(color: Int){
+    private fun updateColor(color: Int) {
         editNoteBinding.editNoteCardRoot.backgroundTintList = getColorStateList(color)
     }
     private fun updateTextNote() {
@@ -168,7 +178,26 @@ class EditNoteActivity : BaseAppCompatActivity() {
             }
         })
     }
-    private fun deleteNote(){
+    @SuppressLint("UseCompatLoadingForDrawables")
+    private fun updateSelectedButton(color: Int) {
+        val buttonList: Array<Button> = arrayOf(
+            editNoteBinding.editNotePurpleButton,
+            editNoteBinding.editNoteLightBlueButton,
+            editNoteBinding.editNoteLightGreenButton,
+            editNoteBinding.editNotePastelRedButton,
+            editNoteBinding.editNotePastelYellowButton)
+
+        for (button in buttonList) {
+            if(button.backgroundTintList == getColorStateList(color)) {
+                button.background = getDrawable(R.drawable.background_button_selected)
+                button.backgroundTintMode = PorterDuff.Mode.MULTIPLY
+            } else {
+                button.background = getDrawable(R.drawable.background_button_not_selected)
+                button.backgroundTintMode = PorterDuff.Mode.SCREEN
+            }
+        }
+    }
+    private fun deleteNote() {
         viewModel.deleteNote(this, note)
     }
     private fun editNote(): Boolean {
