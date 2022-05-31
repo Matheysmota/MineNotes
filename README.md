@@ -9,7 +9,7 @@ Mine Nots
   <p align="left">
   Foi muito legal desenvolver essa app. Pude aperfeiçoar e revalidar todos os conhecimentos de arquitetura que vinha aprendendo nos últimos meses. A implementação de Persistencia de dados utilizando o ROOM acredito ter sido o meu maior desafio, por ser a primeira vez que a utilizei em um projeto, contudo fiquei muito contente com o resultado e acredito ter aprendido bem
   </p>
-  <img  width="20%"  src="[https://i.imgur.com/vm32g1h.jpg](https://imgur.com/a/1Sl2wan)">
+  <img  width="20%"  src="//s.imgur.com/min/embed.js">
 <p>
   
   
