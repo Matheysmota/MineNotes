@@ -10,7 +10,7 @@ class NewNoteRepository(): INewNoteRepository {
     private fun initDataBase(context: Context): NoteDataBase {
         return NoteDataBase.getDataBase(context)
     }
-    // in this fuction we get note informations
+
     override suspend fun saveNote(context: Context, note: Note) {
         try {
             initDataBase(context).noteDao().addNote(note)

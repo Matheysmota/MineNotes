@@ -15,6 +15,5 @@ class NewNoteViewModelFactory(private val repository: NewNoteRepository) : ViewM
         } else {
             throw IllegalArgumentException("ViewModel Not Found")
         }
-
     }
 }

@@ -12,7 +12,6 @@ abstract class NoteDataBase() : RoomDatabase() {
 
     abstract fun noteDao(): NoteDao
 
-    /* isso aqui é um singleton, preciso entender melhor está implementação */
     companion object {
         @Volatile
         private var INSTANCE: NoteDataBase? = null

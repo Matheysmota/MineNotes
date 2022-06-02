@@ -15,7 +15,7 @@ class HomeNoteViewModel(private val repository: IHomeNoteRepository): ViewModel(
     var noteList: LiveData<List<Note>> = _noteList
 
 
-    // get my Livedata to used in activity
+
     fun loadNotes(context: Context) {
         viewModelScope.launch {
             _noteList.value = repository.getNoteList(context)

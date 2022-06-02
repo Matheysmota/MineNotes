@@ -5,5 +5,4 @@ import com.matheus.mota.minenotes.data.entity.Note
 
 interface IHomeNoteRepository {
     suspend fun getNoteList(context: Context): List<Note>
-//    suspend fun saveNote(context: Context)
 }

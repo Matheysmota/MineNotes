@@ -25,7 +25,6 @@ import com.matheus.mota.minenotes.viewModel.newNote.repository.NewNoteRepository
 
 
 class NewNoteActivity : BaseAppCompatActivity() {
-    /* my intent */
     companion object {
         fun getIntent(context: Context): Intent {
             return Intent(context, NewNoteActivity::class.java)
@@ -74,7 +73,6 @@ class NewNoteActivity : BaseAppCompatActivity() {
 
         val menuButton = myMenu?.findItem(R.id.newNoteMenu_save)
         menuButton.toggleEnabled(tittleEmpty && descriptionEmpty)
-//        invalidateOptionsMenu()
     }
     private fun saveNote() {
         val saveNotes = viewModel.saveNotes(
@@ -172,4 +170,5 @@ class NewNoteActivity : BaseAppCompatActivity() {
     private fun updateColor(color: Int) {
         newNoteBinding.newNoteCardRoot.backgroundTintList = getColorStateList(color)
     }
+
 }

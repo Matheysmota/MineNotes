@@ -78,7 +78,7 @@ class HomeNoteActivity : BaseAppCompatActivity(), HomeNoteListener {
             /* in this function i set my recycler view */
             mineNotesBinding.homeNoteNotesList.adapter = noteListAdapter
             noteListAdapter.populateAdapter(list as MutableList<Note>)
-            /* set view state */
+
             mineNoteInstruction().invisible()
             setToolbar(this, R.color.appbar_color)
         }

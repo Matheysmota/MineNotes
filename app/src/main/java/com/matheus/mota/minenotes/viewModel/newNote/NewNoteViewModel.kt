@@ -10,13 +10,9 @@ import com.matheus.mota.minenotes.viewModel.newNote.repository.INewNoteRepositor
 import kotlinx.coroutines.launch
 
 class NewNoteViewModel(private val repository: INewNoteRepository) : ViewModel() {
-
-    // já pensando na mudança do aplicativo.
     private val _note: MutableLiveData<Note> by lazy { MutableLiveData <Note> () }
     val note: LiveData<Note>
         get() = _note
-
-
 
     // get my data in my repositories
     fun saveNotes(context: Context, myNote: Note): Boolean{
@@ -35,10 +31,5 @@ class NewNoteViewModel(private val repository: INewNoteRepository) : ViewModel()
         }
         return myResponse
     }
-
-//    fun getNotes(context: Context): MutableList<Note>{
-//
-//        return
-//    }
 
 }

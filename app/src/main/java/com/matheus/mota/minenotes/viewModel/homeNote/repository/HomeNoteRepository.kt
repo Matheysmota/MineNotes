@@ -9,7 +9,7 @@ class HomeNoteRepository() : IHomeNoteRepository {
     private fun initDataBase(context: Context): NoteDataBase {
         return NoteDataBase.getDataBase(context)
     }
-    // in this fuction we get note informations
+
     override suspend fun getNoteList(context: Context): List<Note> {
         return initDataBase(context).noteDao().getAllNotes()
     }

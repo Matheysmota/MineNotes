@@ -29,7 +29,6 @@ class HomeNoteListAdapter(private val noteListListeners: HomeNoteActivity, priva
     @SuppressLint("SetTextI18n")
     private fun bindItemViewHolder(viewHolder: HomeNoteListViewHolder, item: Note) {
 
-//        viewHolder.root.setCardBackgroundColor(item.noteColor)
         viewHolder.noteTittle.text = item.noteTittle
         viewHolder.noteDescription.text = item.noteDescription
         viewHolder.root.backgroundTintList = context.getColorStateList(item.noteColor)
